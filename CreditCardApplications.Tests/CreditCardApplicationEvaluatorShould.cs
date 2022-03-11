@@ -135,5 +135,25 @@ namespace CreditCardApplications.Tests
             // E.g. read from vendor-supplied constants file
             return "EXPIRED";
         }
+
+        [Fact]
+        public void UserDetailedLookupForOlderApplications()
+        {
+            var mockValidator = new Mock<IFrequentFlyerNumberValidator>();
+
+            //mockValidator.SetupProperty(x => x.ValidationMode);
+            mockValidator.SetupAllProperties(); // Now mock is prepare to catch changes in run time
+
+            mockValidator.Setup(x => x.ServiceInformation.License.LicenseKey).Returns("OK");
+
+            var sut = new CreditCardApplicationEvaluator(mockValidator.Object);
+
+            var application = new CreditCardApplication { Age = 30 };
+
+            sut.Evaluate(application);
+
+            Assert.Equal(ValidationMode.Detailed, mockValidator.Object.ValidationMode);
+
+        }
     }
 }

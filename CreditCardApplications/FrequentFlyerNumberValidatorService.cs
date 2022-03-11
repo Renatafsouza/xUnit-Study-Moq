@@ -6,6 +6,11 @@
 
         public IServiceInformation ServiceInformation => throw new System.NotImplementedException();
 
+        public ValidationMode ValidationMode { 
+            get => throw new System.NotImplementedException("For demo purposes"); 
+            set => throw new System.NotImplementedException("For demo purposes"); 
+        }
+
         // Another way to write
         //public string LicenseKey
         //{
