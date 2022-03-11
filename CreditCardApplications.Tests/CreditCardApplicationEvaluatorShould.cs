@@ -62,5 +62,22 @@ namespace CreditCardApplications.Tests
             Assert.Equal(CreditCardApplicationDecision.AutoDeclined, decision);
 
         }
+
+        // on Strict behavior mode, we must explicity the setup for Mock object for all situations.
+
+        [Fact]
+        public void ReferInvalidFrequenctFlyerApplications()
+        {
+            Mock<IFrequentFlyerNumberValidator> mockValidator = new Mock<IFrequentFlyerNumberValidator>(MockBehavior.Strict);
+            var sut = new CreditCardApplicationEvaluator(mockValidator.Object);
+
+            mockValidator.Setup(x => x.IsValid(It.IsAny<string>())).Returns(false);
+
+            var application = new CreditCardApplication();
+
+            CreditCardApplicationDecision decision = sut.Evaluate(application);
+
+            Assert.Equal(CreditCardApplicationDecision.ReferredToHuman, decision);
+        }
     }
 }
