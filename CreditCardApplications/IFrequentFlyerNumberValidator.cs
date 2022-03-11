@@ -3,6 +3,6 @@
     public interface IFrequentFlyerNumberValidator
     {
         bool IsValid(string frequentFlyerNumber); 
-        bool IsValid(string frequentFlyerNumber, out bool isValid); 
+        void IsValid(string frequentFlyerNumber, out bool isValid); 
     }
 }
