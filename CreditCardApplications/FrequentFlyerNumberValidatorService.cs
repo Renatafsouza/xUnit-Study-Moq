@@ -2,6 +2,17 @@
 {
     public class FrequentFlyerNumberValidatorService : IFrequentFlyerNumberValidator
     {
+        public string LicenseKey => throw new System.NotImplementedException("For demo purposes");
+
+        // Another way to write
+        //public string LicenseKey
+        //{
+        //    get
+        //    {
+        //        throw new System.NotImplementedException("For demo purposes");
+        //    }
+        //}
+
         public bool IsValid(string frequentFlyerNumber)
         {
             throw new System.NotImplementedException("Simulate this real dependency being hard to use");
