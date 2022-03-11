@@ -192,5 +192,27 @@ namespace CreditCardApplications.Tests
 
             mockValidator.Verify(x => x.IsValid(It.IsAny<string>()), Times.Never);
         }
+
+        
+        [Fact]
+        public void CheckLicenseKeyForLowIncomeApplications()
+        {
+            var mockValidator = new Mock<IFrequentFlyerNumberValidator>();
+
+            mockValidator.Setup(x => x.ServiceInformation.License.LicenseKey).Returns("OK");
+
+            var sut = new CreditCardApplicationEvaluator(mockValidator.Object);
+
+            var application = new CreditCardApplication
+            {
+                GrossAnnualIncome = 90_000
+            };
+
+            sut.Evaluate(application);
+
+            //verifying a property value has been accessed in the process
+            mockValidator.VerifyGet(x => x.ServiceInformation.License.LicenseKey);
+
+        }
     }
 }
