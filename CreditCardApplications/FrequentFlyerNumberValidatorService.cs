@@ -2,7 +2,9 @@
 {
     public class FrequentFlyerNumberValidatorService : IFrequentFlyerNumberValidator
     {
-        public string LicenseKey => throw new System.NotImplementedException("For demo purposes");
+        //public string LicenseKey => throw new System.NotImplementedException("For demo purposes");
+
+        public IServiceInformation ServiceInformation => throw new System.NotImplementedException();
 
         // Another way to write
         //public string LicenseKey
