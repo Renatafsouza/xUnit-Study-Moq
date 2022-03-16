@@ -1,4 +1,6 @@
-﻿namespace CreditCardApplications
+﻿using System;
+
+namespace CreditCardApplications
 {
     public class FrequentFlyerNumberValidatorService : IFrequentFlyerNumberValidator
     {
@@ -10,6 +12,8 @@
             get => throw new System.NotImplementedException("For demo purposes"); 
             set => throw new System.NotImplementedException("For demo purposes"); 
         }
+
+        public event EventHandler ValidatorLookupPerformed;
 
         // Another way to write
         //public string LicenseKey
